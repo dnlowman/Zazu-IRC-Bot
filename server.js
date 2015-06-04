@@ -2,7 +2,7 @@ var irc = require('irc');
 var ping = require('ping');
 
 var client = new irc.Client('irc.tl', 'zazu', {
-    channels: ['#zazu'],
+    channels: ['#ls-rp'],
     userName: 'zazu',
     realName: 'zazu by noble',
     port: 6667,
