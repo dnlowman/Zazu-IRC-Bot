@@ -1,7 +1,7 @@
 import irc = require('irc');
-import CommandRouter = require('../../Core/CommandRouter');
-import ServerStatus = require('../../Commands/ServerStatus');
-import VehiclePrices = require('../../Commands/VehiclePrices');
+import CommandRouter = require('../../core/CommandRouter');
+import ServerStatus = require('../../commands/ServerStatus');
+import VehiclePrices = require('../../commands/VehiclePrices');
 
 describe('A Command Router', () =>
 {

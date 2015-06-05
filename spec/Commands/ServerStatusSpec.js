@@ -1,4 +1,4 @@
-var ServerStatus = require('../.././Commands/ServerStatus');
+var ServerStatus = require('../.././commands/ServerStatus');
 describe('A Server Status Command', function () {
     describe('A Build Irc Message method', function () {
         it('should return the correct message if the server is up', function () {

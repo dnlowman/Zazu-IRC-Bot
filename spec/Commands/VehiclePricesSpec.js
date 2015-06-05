@@ -1,4 +1,4 @@
-var VehiclePrices = require('../../Commands/VehiclePrices');
+var VehiclePrices = require('../../commands/VehiclePrices');
 describe('A Vehicle Prices Command', function () {
     describe('A IsValidVehicle method', function () {
         it('should return true if the vehicle is valid', function () {

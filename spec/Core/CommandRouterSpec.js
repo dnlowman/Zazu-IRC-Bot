@@ -1,4 +1,4 @@
-var CommandRouter = require('../../Core/CommandRouter');
+var CommandRouter = require('../../core/CommandRouter');
 describe('A Command Router', function () {
     describe('A ExtractMessage method', function () {
         it('should extract the command string when only the command is passed', function () {
