@@ -1,9 +1,13 @@
 /// <reference path="DefinitelyTyped/node.d.ts" />
 /// <reference path="DefinitelyTyped/irc.d.ts" />
 /// <reference path="DefinitelyTyped/ping.d.ts" />
-var irc = require('irc');
-var CommandRouter = require('./core/CommandRouter');
-var client = new irc.Client('irc.tl', 'zazutest', {
+
+import irc = require('irc');
+import ping = require('ping');
+import CommandRouter = require('./core/CommandRouter');
+
+var client: irc.Client = new irc.Client('irc.tl', 'zazutest',
+{
     channels: ['#zazu'],
     userName: 'zazutest',
     realName: 'zazu by noble',
@@ -23,11 +27,13 @@ var client = new irc.Client('irc.tl', 'zazutest', {
     channelPrefixes: "&#",
     messageSplit: 512,
 });
+
 var commandRouter = new CommandRouter.CommandRouter(client);
-var lastCommand = -1;
-client.addListener('message', function (from, to, message) {
-    if (Date.now() < lastCommand + 10000)
-        return;
+var lastCommand: number = -1;
+
+client.addListener('message', (from: string, to: string, message: string) =>
+{
+    if(Date.now() < lastCommand + 10000) return;
     commandRouter.RouteCommands(from, to, message);
     lastCommand = Date.now();
 });

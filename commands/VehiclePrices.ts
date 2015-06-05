@@ -1,9 +1,13 @@
-var vehiclePrices = function(ircClient, ping) {
-    /* Fields */
-    this.ircClient = ircClient;
-    this.ping = ping;
+/// <reference path="../DefinitelyTyped/irc.d.ts" />
 
-    this.vehicles = {
+import irc = require('irc');
+import ping = require('ping');
+
+export class VehiclePrices
+{
+    private ircClient: irc.Client;
+
+    private vehicles: any = {
         'Beagle': '$5,000,000',
         'Dodo': '$4,000,000',
         'Leviathan': '$1,000,000',
@@ -129,17 +133,22 @@ var vehiclePrices = function(ircClient, ping) {
         'Hustler': '$85,000',
         'Hotdog': '$80,000'
     };
-};
 
-vehiclePrices.prototype.execute = function(from, to, message){
-    for(var key in this.vehicles){
-        if(key.toLowerCase() === message.toLowerCase())
-        {
-            this.ircClient.say(to, "So " + from + ", according to my trusty records a " + key + " costs " + this.vehicles[key] + ".");
-            return;
-        }
+    constructor(ircClient: irc.Client)
+    {
+        this.ircClient = ircClient;
     }
-    this.ircClient.say(to, "Oh noes " + from + ", I couldn't find that vehicle!");
-};
 
-module.exports = vehiclePrices;
+    public Execute(from: string, to: string, message: string)
+    {
+        for(var key in this.vehicles)
+        {
+            if(key.toLowerCase() === message.toLowerCase())
+            {
+                this.ircClient.say(to, "So " + from + ", according to my trusty records a " + key + " costs " + this.vehicles[key] + ".");
+                return;
+            }
+        }
+        this.ircClient.say(to, "Oh noes " + from + ", I couldn't find that vehicle!");
+    }
+}
