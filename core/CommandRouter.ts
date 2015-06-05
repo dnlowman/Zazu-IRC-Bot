@@ -8,22 +8,19 @@ export class CommandRouter
 {
     /* Fields */
     private ircClient: irc.Client;
-    private gameServerHost: string = 'server.ls-rp.com';
-    private websiteHost = 'ls-rp.com';
-    private forumHost = 'forum.ls-rp.com';
     private gameServerStatus: ServerStatus.ServerStatus;
     private websiteServerStatus: ServerStatus.ServerStatus;
     private forumServerStatus: ServerStatus.ServerStatus;
     private vehiclePrices: VehiclePrices.VehiclePrices;
     private commandMappings: any;
 
-    public constructor(ircClient: irc.Client, commandMaps: any)
+    constructor(ircClient: irc.Client, commandMaps: any, gameServerStatus: ServerStatus.ServerStatus, websiteServerStatus: ServerStatus.ServerStatus, forumServerStatus: ServerStatus.ServerStatus, vehiclePrices: VehiclePrices.VehiclePrices)
     {
         this.ircClient = ircClient;
-        this.gameServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.gameServerHost);
-        this.websiteServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.websiteHost);
-        this.forumServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.forumHost);
-        this.vehiclePrices = new VehiclePrices.VehiclePrices(this.ircClient);
+        this.gameServerStatus = gameServerStatus;
+        this.websiteServerStatus = websiteServerStatus;
+        this.forumServerStatus = forumServerStatus;
+        this.vehiclePrices = vehiclePrices;
         this.commandMappings = commandMaps;
     }
 

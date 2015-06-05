@@ -140,16 +140,27 @@ export class VehiclePrices implements ICommand.ICommand
         this.ircClient = ircClient;
     }
 
-    public Execute(from: string, to: string, message: string)
+    public GetVehicle(vehicleName: string): string
     {
-        for(var key in this.vehicles)
+        for(var vehicle in this.vehicles)
         {
-            if(key.toLowerCase() === message.toLowerCase())
+            if(vehicle.toLowerCase() === vehicleName.toLowerCase())
             {
-                this.ircClient.say(to, "So " + from + ", according to my trusty records a " + key + " costs " + this.vehicles[key] + ".");
-                return;
+                return vehicle;
             }
         }
-        this.ircClient.say(to, "Oh noes " + from + ", I couldn't find that vehicle!");
+        return '';
+    }
+
+    public BuildIrcMessage(from: string, to: string, message: string): string
+    {
+        var vehicle = this.GetVehicle(message);
+        if(vehicle === '') return 'Oh noes ' + from + ', I couldn\'t find that vehicle!';
+        return 'So ' + from + ', according to my trusty records a ' + vehicle + ' costs ' + this.vehicles[vehicle] + '.';
+    }
+
+    public Execute(from: string, to: string, message: string)
+    {
+        this.BuildIrcMessage(from, to, message);
     }
 }

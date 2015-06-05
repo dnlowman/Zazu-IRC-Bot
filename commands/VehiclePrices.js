@@ -129,14 +129,22 @@ var VehiclePrices = (function () {
         };
         this.ircClient = ircClient;
     }
-    VehiclePrices.prototype.Execute = function (from, to, message) {
-        for (var key in this.vehicles) {
-            if (key.toLowerCase() === message.toLowerCase()) {
-                this.ircClient.say(to, "So " + from + ", according to my trusty records a " + key + " costs " + this.vehicles[key] + ".");
-                return;
+    VehiclePrices.prototype.GetVehicle = function (vehicleName) {
+        for (var vehicle in this.vehicles) {
+            if (vehicle.toLowerCase() === vehicleName.toLowerCase()) {
+                return vehicle;
             }
         }
-        this.ircClient.say(to, "Oh noes " + from + ", I couldn't find that vehicle!");
+        return '';
+    };
+    VehiclePrices.prototype.BuildIrcMessage = function (from, to, message) {
+        var vehicle = this.GetVehicle(message);
+        if (vehicle === '')
+            return 'Oh noes ' + from + ', I couldn\'t find that vehicle!';
+        return 'So ' + from + ', according to my trusty records a ' + vehicle + ' costs ' + this.vehicles[vehicle] + '.';
+    };
+    VehiclePrices.prototype.Execute = function (from, to, message) {
+        this.BuildIrcMessage(from, to, message);
     };
     return VehiclePrices;
 })();

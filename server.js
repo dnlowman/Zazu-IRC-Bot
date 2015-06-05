@@ -2,7 +2,9 @@
 /// <reference path="DefinitelyTyped/irc.d.ts" />
 /// <reference path="DefinitelyTyped/ping.d.ts" />
 var irc = require('irc');
-var CommandRouter = require('./core/CommandRouter');
+var CommandRouter = require('./Core/CommandRouter');
+var ServerStatus = require('./commands/ServerStatus');
+var VehiclePrices = require('./commands/VehiclePrices');
 var client = new irc.Client('irc.tl', 'zazutest', {
     channels: ['#zazu'],
     userName: 'zazutest',
@@ -23,13 +25,20 @@ var client = new irc.Client('irc.tl', 'zazutest', {
     channelPrefixes: "&#",
     messageSplit: 512,
 });
+var gameServerHost = 'server.ls-rp.com';
+var websiteHost = 'ls-rp.com';
+var forumHost = 'forum.ls-rp.com';
+var gameServerStatus = new ServerStatus.ServerStatus(client, gameServerHost);
+var websiteServerStatus = new ServerStatus.ServerStatus(client, websiteHost);
+var forumServerStatus = new ServerStatus.ServerStatus(client, forumHost);
+var vehiclePrices = new VehiclePrices.VehiclePrices(client);
 var commandMaps = {
-    'server': this.gameServerStatus,
-    'site': this.websiteServerStatus,
-    'forum': this.forumServerStatus,
-    'price': this.vehiclePrices,
+    'server': gameServerStatus,
+    'site': websiteServerStatus,
+    'forum': forumServerStatus,
+    'price': vehiclePrices,
 };
-var commandRouter = new CommandRouter.CommandRouter(client, commandMaps);
+var commandRouter = new CommandRouter.CommandRouter(client, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
 var lastCommand = -1;
 client.addListener('message', function (from, to, message) {
     if (Date.now() < lastCommand + 10000)

@@ -1,16 +1,11 @@
 /// <reference path="../DefinitelyTyped/irc.d.ts" />
-var ServerStatus = require('../commands/ServerStatus');
-var VehiclePrices = require('../commands/VehiclePrices');
 var CommandRouter = (function () {
-    function CommandRouter(ircClient, commandMaps) {
-        this.gameServerHost = 'server.ls-rp.com';
-        this.websiteHost = 'ls-rp.com';
-        this.forumHost = 'forum.ls-rp.com';
+    function CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices) {
         this.ircClient = ircClient;
-        this.gameServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.gameServerHost);
-        this.websiteServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.websiteHost);
-        this.forumServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.forumHost);
-        this.vehiclePrices = new VehiclePrices.VehiclePrices(this.ircClient);
+        this.gameServerStatus = gameServerStatus;
+        this.websiteServerStatus = websiteServerStatus;
+        this.forumServerStatus = forumServerStatus;
+        this.vehiclePrices = vehiclePrices;
         this.commandMappings = commandMaps;
     }
     CommandRouter.prototype.ExtractMessage = function (message) {
