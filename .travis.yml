@@ -3,4 +3,5 @@ node_js:
   - "node"
 
  before_script:
-     - "npm i -g jasmine-node"
+     - "chmod 0777 ./node_modules/.bin/jasmine"
+     - "chmod 0777 ./node_modules/jasmine"
