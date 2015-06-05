@@ -1,5 +1,5 @@
 {
-  "name": "Zazu IRC Bot",
+  "name": "Zazu-IRC-Bot",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,10 @@
   "author": "Noble",
   "license": "MIT",
   "dependencies": {
-      "irc": "^0.3.12",
-      "pingwrap": "0.0.1"
+    "irc": "^0.3.12",
+    "pingwrap": "0.0.1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.3.1"
   }
 }

@@ -2,8 +2,9 @@
 
 import irc = require('irc');
 import ping = require('ping');
+import ICommand = require('../Interfaces/ICommand');
 
-export class VehiclePrices
+export class VehiclePrices implements ICommand.ICommand
 {
     private ircClient: irc.Client;
 

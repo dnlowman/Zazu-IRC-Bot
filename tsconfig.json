@@ -16,11 +16,14 @@
     ],
     "files": [
         "./DefinitelyTyped/irc.d.ts",
+        "./DefinitelyTyped/jasmine.d.ts",
         "./DefinitelyTyped/node.d.ts",
         "./DefinitelyTyped/ping.d.ts",
+        "./Interfaces/ICommand.ts",
         "./Server.ts",
         "./commands/ServerStatus.ts",
         "./commands/VehiclePrices.ts",
-        "./core/CommandRouter.ts"
+        "./core/CommandRouter.ts",
+        "./spec/CommandRouterSpec.ts"
     ]
 }

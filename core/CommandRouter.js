@@ -2,7 +2,7 @@
 var ServerStatus = require('../commands/ServerStatus');
 var VehiclePrices = require('../commands/VehiclePrices');
 var CommandRouter = (function () {
-    function CommandRouter(ircClient) {
+    function CommandRouter(ircClient, commandMaps) {
         this.gameServerHost = 'server.ls-rp.com';
         this.websiteHost = 'ls-rp.com';
         this.forumHost = 'forum.ls-rp.com';
@@ -11,20 +11,13 @@ var CommandRouter = (function () {
         this.websiteServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.websiteHost);
         this.forumServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.forumHost);
         this.vehiclePrices = new VehiclePrices.VehiclePrices(this.ircClient);
-        this.commandMappings =
-            {
-                'server': this.gameServerStatus,
-                'site': this.websiteServerStatus,
-                'forum': this.forumServerStatus,
-                'price': this.vehiclePrices,
-            };
+        this.commandMappings = commandMaps;
     }
     CommandRouter.prototype.ExtractCommand = function (message) {
         var ret = [];
         var space = message.indexOf(' ');
         if (space === -1) {
             ret.push(message.slice(1, message.length));
-            ret.push('');
         }
         else {
             ret.push(message.slice(1, space));
@@ -41,7 +34,7 @@ var CommandRouter = (function () {
         return;
     };
     CommandRouter.prototype.IsCommand = function (message) {
-        return message[0] === '!';
+        return message[0] === '!' && message.length > 1;
     };
     return CommandRouter;
 })();

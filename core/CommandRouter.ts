@@ -17,31 +17,26 @@ export class CommandRouter
     private vehiclePrices: VehiclePrices.VehiclePrices;
     private commandMappings: any;
 
-    public constructor(ircClient: irc.Client)
+    public constructor(ircClient: irc.Client, commandMaps: any)
     {
         this.ircClient = ircClient;
         this.gameServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.gameServerHost);
         this.websiteServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.websiteHost);
         this.forumServerStatus = new ServerStatus.ServerStatus(this.ircClient, this.forumHost);
         this.vehiclePrices = new VehiclePrices.VehiclePrices(this.ircClient);
-        this.commandMappings =
-        {
-            'server': this.gameServerStatus,
-            'site': this.websiteServerStatus,
-            'forum': this.forumServerStatus,
-            'price': this.vehiclePrices,
-        };
+        this.commandMappings = commandMaps;
     }
 
     public ExtractCommand(message: string): Array<string>
     {
         var ret: Array<string> = [];
         var space = message.indexOf(' ');
-        if(space === -1) {
+        if(space === -1)
+        {
             ret.push(message.slice(1, message.length));
-            ret.push('');
         }
-        else {
+        else
+        {
             ret.push(message.slice(1, space));
             ret.push(message.slice(space + 1, message.length));
         }
@@ -58,6 +53,6 @@ export class CommandRouter
 
     public IsCommand(message: String)
     {
-        return message[0] === '!';
+        return message[0] === '!' && message.length > 1;
     }
 }

@@ -3,11 +3,12 @@
 
 import irc = require('irc');
 import ping = require('ping');
+import ICommand = require('../Interfaces/ICommand');
 
-export class ServerStatus
+export class ServerStatus implements ICommand.ICommand
 {
     private ircClient: irc.Client;
-    private host;
+    private host: string;
 
     constructor(ircClient: irc.Client, host: string)
     {
