@@ -1,8 +1,10 @@
+sudo: required
+
 language: node_js
 node_js:
   - "node"
 
-script: jasmine
+script: sudo jasmine
 
 before_script:
     - "chmod 0777 ./node_modules/.bin/jasmine"
