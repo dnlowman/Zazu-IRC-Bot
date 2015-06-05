@@ -23,7 +23,13 @@ var client = new irc.Client('irc.tl', 'zazutest', {
     channelPrefixes: "&#",
     messageSplit: 512,
 });
-var commandRouter = new CommandRouter.CommandRouter(client);
+var commandMaps = {
+    'server': this.gameServerStatus,
+    'site': this.websiteServerStatus,
+    'forum': this.forumServerStatus,
+    'price': this.vehiclePrices,
+};
+var commandRouter = new CommandRouter.CommandRouter(client, commandMaps);
 var lastCommand = -1;
 client.addListener('message', function (from, to, message) {
     if (Date.now() < lastCommand + 10000)

@@ -6,7 +6,7 @@ import CommandRouter = require('../core/CommandRouter');
 
 describe('A Command Router', () =>
 {
-    describe('A ExtractCommand method', () =>
+    describe('A ExtractMessage method', () =>
     {
         it('should extract the command string when only the command is passed', () =>
         {
@@ -17,7 +17,7 @@ describe('A Command Router', () =>
             var commandRouter: CommandRouter.CommandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
 
             // Act
-            var result = commandRouter.ExtractCommand(command);
+            var result = commandRouter.ExtractMessage(command);
 
             // Assert
             expect(result).not.toBeNull();
@@ -34,7 +34,7 @@ describe('A Command Router', () =>
             var commandRouter: CommandRouter.CommandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
 
             // Act
-            var result = commandRouter.ExtractCommand(command);
+            var result = commandRouter.ExtractMessage(command);
 
             // Assert
             expect(result).not.toBeNull();
@@ -106,8 +106,6 @@ describe('A Command Router', () =>
 
             spyOn(testCommand, 'Execute');
         });
-
-
 
         it('should invoke the correct function which is mapped', () =>
         {

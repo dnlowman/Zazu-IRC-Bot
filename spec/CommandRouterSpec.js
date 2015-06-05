@@ -2,13 +2,13 @@
 /// <reference path="../DefinitelyTyped/irc.d.ts" />
 var CommandRouter = require('../core/CommandRouter');
 describe('A Command Router', function () {
-    describe('A ExtractCommand method', function () {
+    describe('A ExtractMessage method', function () {
         it('should extract the command string when only the command is passed', function () {
             var command = '!random';
             var commandMaps = null;
             var ircClient = null;
             var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
-            var result = commandRouter.ExtractCommand(command);
+            var result = commandRouter.ExtractMessage(command);
             expect(result).not.toBeNull();
             expect(result.length).toEqual(1);
             expect(result[0]).toEqual('random');
@@ -18,7 +18,7 @@ describe('A Command Router', function () {
             var commandMaps = null;
             var ircClient = null;
             var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
-            var result = commandRouter.ExtractCommand(command);
+            var result = commandRouter.ExtractMessage(command);
             expect(result).not.toBeNull();
             expect(result.length).toEqual(2);
             expect(result[0]).toEqual('random');

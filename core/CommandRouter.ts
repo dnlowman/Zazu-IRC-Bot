@@ -27,7 +27,7 @@ export class CommandRouter
         this.commandMappings = commandMaps;
     }
 
-    public ExtractCommand(message: string): Array<string>
+    public ExtractMessage(message: string): Array<string>
     {
         var ret: Array<string> = [];
         var space = message.indexOf(' ');
@@ -46,9 +46,11 @@ export class CommandRouter
     public RouteCommands(from: string, to: string, message: string)
     {
         if(!this.IsCommand(message)) return;
-        var res = this.ExtractCommand(message);
-        if(res[0] in this.commandMappings) this.commandMappings[res[0]].Execute(from, to, res[1]);
-        return;
+        var extracted = this.ExtractMessage(message);
+        var command = extracted[0];
+        var parameters = extracted[1] || '';
+        var func = this.commandMappings[command];
+        if(command in this.commandMappings) func.Execute(from, to, parameters);
     }
 
     public IsCommand(message: String)

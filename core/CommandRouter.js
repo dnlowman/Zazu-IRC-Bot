@@ -13,7 +13,7 @@ var CommandRouter = (function () {
         this.vehiclePrices = new VehiclePrices.VehiclePrices(this.ircClient);
         this.commandMappings = commandMaps;
     }
-    CommandRouter.prototype.ExtractCommand = function (message) {
+    CommandRouter.prototype.ExtractMessage = function (message) {
         var ret = [];
         var space = message.indexOf(' ');
         if (space === -1) {
@@ -28,10 +28,12 @@ var CommandRouter = (function () {
     CommandRouter.prototype.RouteCommands = function (from, to, message) {
         if (!this.IsCommand(message))
             return;
-        var res = this.ExtractCommand(message);
-        if (res[0] in this.commandMappings)
-            this.commandMappings[res[0]].Execute(from, to, res[1]);
-        return;
+        var extracted = this.ExtractMessage(message);
+        var command = extracted[0];
+        var parameters = extracted[1] || '';
+        var func = this.commandMappings[command];
+        if (command in this.commandMappings)
+            func.Execute(from, to, parameters);
     };
     CommandRouter.prototype.IsCommand = function (message) {
         return message[0] === '!' && message.length > 1;

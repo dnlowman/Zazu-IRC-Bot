@@ -28,7 +28,15 @@ var client: irc.Client = new irc.Client('irc.tl', 'zazutest',
     messageSplit: 512,
 });
 
-var commandRouter = new CommandRouter.CommandRouter(client);
+var commandMaps: any =
+{
+    'server': this.gameServerStatus,
+    'site': this.websiteServerStatus,
+    'forum': this.forumServerStatus,
+    'price': this.vehiclePrices,
+}
+
+var commandRouter = new CommandRouter.CommandRouter(client, commandMaps);
 var lastCommand: number = -1;
 
 client.addListener('message', (from: string, to: string, message: string) =>
