@@ -4,11 +4,12 @@ var ServerStatus = (function () {
         this.ircClient = ircClient;
         this.host = host;
     }
+    ServerStatus.prototype.BuildIrcMessage = function (serverStatus, from) {
+        return 'Hi der ' + from + ((serverStatus) ? ' ' + this.host + ' looks up from here!' : ' ' + this.host + ' looks down from here!');
+    };
     ServerStatus.prototype.Execute = function (from, to, message) {
         var _this = this;
-        ping.sys.probe(this.host, function (isAlive) {
-            _this.ircClient.say(to, "Hi der " + from + ((isAlive) ? " " + _this.host + " looks up from here!" : " " + _this.host + " looks down from here!"));
-        });
+        ping.sys.probe(this.host, function (isAlive) { return _this.ircClient.say(to, _this.BuildIrcMessage(isAlive, from)); });
     };
     return ServerStatus;
 })();

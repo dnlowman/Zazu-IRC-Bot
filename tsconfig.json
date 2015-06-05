@@ -25,6 +25,7 @@
         "./DefinitelyTyped/ping.d.ts",
         "./Interfaces/ICommand.ts",
         "./Server.ts",
+        "./spec/Commands/ServerStatusSpec.ts",
         "./spec/Commands/VehiclePricesSpec.ts",
         "./spec/Core/CommandRouterSpec.ts"
     ]

@@ -13,11 +13,13 @@ export class ServerStatus implements ICommand.ICommand
         this.host = host;
     }
 
+    public BuildIrcMessage(serverStatus: boolean, from: string)
+    {
+        return 'Hi der ' + from + ((serverStatus) ? ' ' + this.host + ' looks up from here!' : ' ' + this.host + ' looks down from here!');
+    }
+
     public Execute(from: string, to: string, message: string)
     {
-        ping.sys.probe(this.host, (isAlive: Boolean) =>
-        {
-            this.ircClient.say(to, "Hi der " + from + ((isAlive) ? " " + this.host + " looks up from here!" : " " + this.host + " looks down from here!"));
-        });
+        ping.sys.probe(this.host, (isAlive: boolean) => this.ircClient.say(to, this.BuildIrcMessage(isAlive, from)));
     }
 }
