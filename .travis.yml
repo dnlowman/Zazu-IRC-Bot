@@ -7,8 +7,4 @@ node_js:
 script: jasmine
 
 before_script:
-    - "chmod 0777 ./node_modules/.bin/jasmine"
-    - "chmod 0777 ./node_modules/jasmine"
-    - "chmod 0777 Commands"
-    - "chmod 0777 Core"
-    - "chmod 0777 Interfaces"
+    - "chmod u+x **/*"
