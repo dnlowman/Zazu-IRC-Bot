@@ -144,7 +144,7 @@ var VehiclePrices = (function () {
         return 'So ' + from + ', according to my trusty records a ' + vehicle + ' costs ' + this.vehicles[vehicle] + '.';
     };
     VehiclePrices.prototype.Execute = function (from, to, message) {
-        this.BuildIrcMessage(from, to, message);
+        this.ircClient.say(to, this.BuildIrcMessage(from, to, message));
     };
     return VehiclePrices;
 })();

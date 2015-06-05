@@ -161,6 +161,6 @@ export class VehiclePrices implements ICommand.ICommand
 
     public Execute(from: string, to: string, message: string)
     {
-        this.BuildIrcMessage(from, to, message);
+        this.ircClient.say(to, this.BuildIrcMessage(from, to, message));
     }
 }
