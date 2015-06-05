@@ -4,7 +4,7 @@
         "target": "es5",
         "module": "commonjs",
         "declaration": false,
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "removeComments": true,
         "noLib": false,
         "preserveConstEnums": true,
@@ -12,7 +12,8 @@
     },
     "filesGlob": [
         "./**/*.ts",
-        "!./node_modules/**/*.ts"
+        "!./node_modules/**/*.ts",
+        "./DefinitelyTyped/*.d.ts"
     ],
     "files": [
         "./Commands/ServerStatus.ts",

@@ -1,5 +1,3 @@
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
-
 import irc = require('irc');
 import ping = require('ping');
 import ICommand = require('../Interfaces/ICommand');

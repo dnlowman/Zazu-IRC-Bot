@@ -1,6 +1,3 @@
-/// <reference path="../../DefinitelyTyped/jasmine.d.ts" />
-/// <reference path="../../DefinitelyTyped/irc.d.ts" />
-
 import irc = require('irc');
 import CommandRouter = require('../../Core/CommandRouter');
 import ServerStatus = require('../../Commands/ServerStatus');

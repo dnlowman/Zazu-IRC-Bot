@@ -1,5 +1,3 @@
-/// <reference path="../../DefinitelyTyped/jasmine.d.ts" />
-/// <reference path="../../DefinitelyTyped/irc.d.ts" />
 var CommandRouter = require('../../Core/CommandRouter');
 describe('A Command Router', function () {
     describe('A ExtractMessage method', function () {

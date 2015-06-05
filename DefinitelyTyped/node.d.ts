@@ -16,6 +16,9 @@
 ************************************************/
 declare var process: NodeJS.Process;
 declare var global: NodeJS.Global;
+declare var WeakMap: any;
+declare var Map: any;
+declare var Set: any;
 
 declare var __filename: string;
 declare var __dirname: string;
@@ -251,7 +254,7 @@ declare module NodeJS {
         setInterval: (callback: (...args: any[]) => void, ms: number, ...args: any[]) => NodeJS.Timer;
         setTimeout: (callback: (...args: any[]) => void, ms: number, ...args: any[]) => NodeJS.Timer;
         undefined: typeof undefined;
-        unescape: (str: string) => string;    
+        unescape: (str: string) => string;
         gc: () => void;
     }
 

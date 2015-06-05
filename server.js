@@ -1,6 +1,3 @@
-/// <reference path="DefinitelyTyped/node.d.ts" />
-/// <reference path="DefinitelyTyped/irc.d.ts" />
-/// <reference path="DefinitelyTyped/ping.d.ts" />
 var irc = require('irc');
 var CommandRouter = require('./Core/CommandRouter');
 var ServerStatus = require('./commands/ServerStatus');

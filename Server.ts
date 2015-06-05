@@ -1,7 +1,3 @@
-/// <reference path="DefinitelyTyped/node.d.ts" />
-/// <reference path="DefinitelyTyped/irc.d.ts" />
-/// <reference path="DefinitelyTyped/ping.d.ts" />
-
 import irc = require('irc');
 import ping = require('ping');
 import CommandRouter = require('./Core/CommandRouter');

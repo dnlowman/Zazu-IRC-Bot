@@ -1,4 +1,3 @@
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
 var CommandRouter = (function () {
     function CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices) {
         this.ircClient = ircClient;

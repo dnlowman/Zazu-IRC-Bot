@@ -1,5 +1,3 @@
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
-/// <reference path="../DefinitelyTyped/ping.d.ts" />
 var ping = require('ping');
 var ServerStatus = (function () {
     function ServerStatus(ircClient, host) {

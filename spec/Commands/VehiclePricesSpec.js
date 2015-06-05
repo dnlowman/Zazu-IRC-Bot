@@ -1,5 +1,3 @@
-/// <reference path="../../DefinitelyTyped/jasmine.d.ts" />
-/// <reference path="../../DefinitelyTyped/irc.d.ts" />
 var VehiclePrices = require('../../Commands/VehiclePrices');
 describe('A Vehicle Prices Command', function () {
     describe('A IsValidVehicle method', function () {

@@ -1,4 +1,3 @@
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
 var VehiclePrices = (function () {
     function VehiclePrices(ircClient) {
         this.vehicles = {

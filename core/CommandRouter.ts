@@ -1,5 +1,3 @@
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
-
 import irc = require('irc');
 import ServerStatus = require('../commands/ServerStatus');
 import VehiclePrices = require('../commands/VehiclePrices');
