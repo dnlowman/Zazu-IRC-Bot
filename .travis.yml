@@ -8,6 +8,6 @@ script: jasmine
 
 before_script:
     - chmod 0777 ./node_modules/.bin/jasmine
-    - chmod 0777 ./Commands/ServerStatus
-    - chmod 0777 ./Commands/VehiclePrices
-    - chmod 0777 ./Core/CommandRouter
+    - chmod 0777 Commands/ServerStatus.js
+    - chmod 0777 Commands/VehiclePrices.js
+    - chmod 0777 Core/CommandRouter.js
