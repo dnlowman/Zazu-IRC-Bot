@@ -1,5 +1,5 @@
 import irc = require('irc');
-import ServerStatus = require('../../Commands/ServerStatus');
+import ServerStatus = require('../.././Commands/ServerStatus');
 
 describe('A Server Status Command', () =>
 {
