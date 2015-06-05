@@ -4,7 +4,9 @@
 
 import irc = require('irc');
 import ping = require('ping');
-import CommandRouter = require('./core/CommandRouter');
+import CommandRouter = require('./Core/CommandRouter');
+import ServerStatus = require('./commands/ServerStatus');
+import VehiclePrices = require('./commands/VehiclePrices');
 
 var client: irc.Client = new irc.Client('irc.tl', 'zazutest',
 {
@@ -28,15 +30,23 @@ var client: irc.Client = new irc.Client('irc.tl', 'zazutest',
     messageSplit: 512,
 });
 
+var gameServerHost: string = 'server.ls-rp.com';
+var websiteHost: string = 'ls-rp.com';
+var forumHost: string = 'forum.ls-rp.com';
+var gameServerStatus = new ServerStatus.ServerStatus(client, gameServerHost);
+var websiteServerStatus = new ServerStatus.ServerStatus(client, websiteHost);
+var forumServerStatus = new ServerStatus.ServerStatus(client, forumHost);
+var vehiclePrices = new VehiclePrices.VehiclePrices(client);
+
 var commandMaps: any =
 {
-    'server': this.gameServerStatus,
-    'site': this.websiteServerStatus,
-    'forum': this.forumServerStatus,
-    'price': this.vehiclePrices,
+    'server': gameServerStatus,
+    'site': websiteServerStatus,
+    'forum': forumServerStatus,
+    'price': vehiclePrices,
 }
 
-var commandRouter = new CommandRouter.CommandRouter(client, commandMaps);
+var commandRouter = new CommandRouter.CommandRouter(client, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
 var lastCommand: number = -1;
 
 client.addListener('message', (from: string, to: string, message: string) =>

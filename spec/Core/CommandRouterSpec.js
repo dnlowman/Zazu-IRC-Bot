@@ -1,13 +1,20 @@
-/// <reference path="../DefinitelyTyped/jasmine.d.ts" />
-/// <reference path="../DefinitelyTyped/irc.d.ts" />
-var CommandRouter = require('../core/CommandRouter');
+/// <reference path="../../DefinitelyTyped/jasmine.d.ts" />
+/// <reference path="../../DefinitelyTyped/irc.d.ts" />
+var CommandRouter = require('../../Core/CommandRouter');
 describe('A Command Router', function () {
     describe('A ExtractMessage method', function () {
         it('should extract the command string when only the command is passed', function () {
             var command = '!random';
             var commandMaps = null;
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.ExtractMessage(command);
             expect(result).not.toBeNull();
             expect(result.length).toEqual(1);
@@ -17,7 +24,14 @@ describe('A Command Router', function () {
             var command = '!random param1 param2';
             var commandMaps = null;
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.ExtractMessage(command);
             expect(result).not.toBeNull();
             expect(result.length).toEqual(2);
@@ -30,7 +44,14 @@ describe('A Command Router', function () {
             var command = '!rt';
             var commandMaps = null;
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.IsCommand(command);
             expect(result).not.toBeNull();
             expect(result).toBeTruthy();
@@ -39,7 +60,14 @@ describe('A Command Router', function () {
             var command = 'rt';
             var commandMaps = null;
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.IsCommand(command);
             expect(result).not.toBeNull();
             expect(result).not.toBeTruthy();
@@ -48,7 +76,14 @@ describe('A Command Router', function () {
             var command = '!';
             var commandMaps = null;
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.IsCommand(command);
             expect(result).not.toBeNull();
             expect(result).not.toBeTruthy();
@@ -70,7 +105,14 @@ describe('A Command Router', function () {
             var to = '#test';
             var command = '!test';
             var ircClient = null;
-            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps);
+            var gameServerHost = '';
+            var websiteHost = '';
+            var forumHost = '';
+            var gameServerStatus = null;
+            var websiteServerStatus = null;
+            var forumServerStatus = null;
+            var vehiclePrices = null;
+            var commandRouter = new CommandRouter.CommandRouter(ircClient, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
             var result = commandRouter.RouteCommands(from, to, command);
             expect(testCommand.Execute).toHaveBeenCalled();
         });

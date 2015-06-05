@@ -15,15 +15,16 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
+        "./Commands/ServerStatus.ts",
+        "./Commands/VehiclePrices.ts",
+        "./Core/CommandRouter.ts",
         "./DefinitelyTyped/irc.d.ts",
         "./DefinitelyTyped/jasmine.d.ts",
         "./DefinitelyTyped/node.d.ts",
         "./DefinitelyTyped/ping.d.ts",
         "./Interfaces/ICommand.ts",
         "./Server.ts",
-        "./commands/ServerStatus.ts",
-        "./commands/VehiclePrices.ts",
-        "./core/CommandRouter.ts",
-        "./spec/CommandRouterSpec.ts"
+        "./spec/Commands/VehiclePricesSpec.ts",
+        "./spec/Core/CommandRouterSpec.ts"
     ]
 }
