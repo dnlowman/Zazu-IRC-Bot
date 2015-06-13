@@ -21,7 +21,7 @@ describe('A Last Seen Command', function () {
             var lastSeenCommand = new LastSeen.LastSeen(ircClient);
             lastSeenCommand.IsUserConnected = jasmine.createSpy("IsUserConnected spy").and.callFake(function () { return false; });
             var result = lastSeenCommand.BuildIrcMessage(from, to, nick, lastSeen);
-            expect(result).toEqual('Okay Noble, according to my diary TestName was last seen on Mon Jul 13 2015 17:00:00 GMT+0100 (GMT Daylight Time).');
+            expect(result).toEqual('Okay Noble, according to my diary TestName was last seen on Mon Jul 13 2015 17:00:00 GMT+0000 (GMT Daylight Time).');
         });
         it('should return the correct message if the users name is passed as the parameter', function () {
             var ircClient = null;
