@@ -1,5 +1,5 @@
 import irc = require('irc');
-import LastSeen = require('../../Commands/LastSeen');
+import LastSeen = require('../../commands/LastSeen');
 
 describe('A Last Seen Command', () =>
 {

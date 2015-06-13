@@ -1,4 +1,4 @@
-var LastSeen = require('../../Commands/LastSeen');
+var LastSeen = require('../../commands/LastSeen');
 describe('A Last Seen Command', function () {
     describe('A Build Irc Message method', function () {
         it('should return the correct message if the user was not found', function () {
