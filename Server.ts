@@ -3,12 +3,16 @@ import ping = require('ping');
 import CommandRouter = require('./Core/CommandRouter');
 import ServerStatus = require('./commands/ServerStatus');
 import VehiclePrices = require('./commands/VehiclePrices');
+import mongoose = require('mongoose');
+import LastSeen = require('./Commands/LastSeen');
 
-var client: irc.Client = new irc.Client('irc.tl', 'zazutest',
+mongoose.connect('mongodb://localhost:27017');
+
+var client: irc.Client = new irc.Client('irc.tl', 'zazu',
 {
-    channels: ['#zazu'],
-    userName: 'zazutest',
-    realName: 'zazu by noble',
+    channels: ['#ls-rp'],
+    userName: 'zazu',
+    realName: 'zazu by Noble',
     port: 6667,
     localAddress: null,
     debug: false,
@@ -33,6 +37,7 @@ var gameServerStatus = new ServerStatus.ServerStatus(client, gameServerHost);
 var websiteServerStatus = new ServerStatus.ServerStatus(client, websiteHost);
 var forumServerStatus = new ServerStatus.ServerStatus(client, forumHost);
 var vehiclePrices = new VehiclePrices.VehiclePrices(client);
+var lastSeen = new LastSeen.LastSeen(client);
 
 var commandMaps: any =
 {
@@ -40,14 +45,14 @@ var commandMaps: any =
     'site': websiteServerStatus,
     'forum': forumServerStatus,
     'price': vehiclePrices,
+    'lastseen': lastSeen,
 }
 
 var commandRouter = new CommandRouter.CommandRouter(client, commandMaps, gameServerStatus, websiteServerStatus, forumServerStatus, vehiclePrices);
-var lastCommand: number = -1;
 
 client.addListener('message', (from: string, to: string, message: string) =>
 {
-    if(Date.now() < lastCommand + 10000) return;
     commandRouter.RouteCommands(from, to, message);
-    lastCommand = Date.now();
 });
+
+console.log('Woo I\'m up and running!');

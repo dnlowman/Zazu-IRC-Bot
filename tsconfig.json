@@ -16,15 +16,19 @@
         "./DefinitelyTyped/*.d.ts"
     ],
     "files": [
+        "./Commands/LastSeen.ts",
         "./Commands/ServerStatus.ts",
         "./Commands/VehiclePrices.ts",
         "./Core/CommandRouter.ts",
         "./DefinitelyTyped/irc.d.ts",
         "./DefinitelyTyped/jasmine.d.ts",
+        "./DefinitelyTyped/mongoose.d.ts",
         "./DefinitelyTyped/node.d.ts",
         "./DefinitelyTyped/ping.d.ts",
         "./Interfaces/ICommand.ts",
+        "./Models/UserSchema.ts",
         "./Server.ts",
+        "./spec/Commands/LastSeenSpec.ts",
         "./spec/Commands/ServerStatusSpec.ts",
         "./spec/Commands/VehiclePricesSpec.ts",
         "./spec/Core/CommandRouterSpec.ts"
