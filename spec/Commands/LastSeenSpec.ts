@@ -38,7 +38,7 @@ describe('A Last Seen Command', () =>
             var result = lastSeenCommand.BuildIrcMessage(from, to, nick, lastSeen);
 
             // Assert
-            expect(result).toEqual('Okay Noble, according to my diary TestName was last seen on Mon Jul 13 2015 17:00:00 GMT+0000 (GMT Daylight Time).');
+            expect(result).toEqual('Okay Noble, according to my diary TestName was last seen on Mon Jul 13 2015 17:00:00 GMT+0000 (UTC).');
         });
 
         it('should return the correct message if the users name is passed as the parameter', () =>
